@@ -1,3 +1,4 @@
+// Requirements Local Agentic RAG
 python3 -m pip install langchain-nomic langchain_community tiktoken langchainhub
 python3 -m pip install ollama
 python3 -m pip install jupyter
@@ -9,4 +10,7 @@ python3 -m pip install -U langgraph
 python3 -m pip install -U langchain
 python3 -m pip install "fastapi[standard]"
 
-
+// Requirements Cloud Adaptative RAG
+python3 -m pip install "fastapi[standard]"
+python3 -m pip install -U langchain_community tiktoken langchain-openai langchain-cohere langchainhub langchain-chroma langchain langgraph pydantic typing-extensions langchain-google-community langchain-core  
+python3 -m pip install beautifulsoup4

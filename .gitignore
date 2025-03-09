@@ -1,1 +1,4 @@
 .DS_Store
+.venv/
+backend/openai_chroma_db
+backend/secrets.json
