@@ -1,12 +1,16 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from load_secrets import load_secrets
+load_secrets()
+
 from pprint import pprint
 from websocket_manager import WebSocketManager
 from config import app
 from state_graph import agent
-from load_secrets import load_secrets
+
+from models import GraphState
 
 manager = WebSocketManager()
-load_secrets()
+
 
 @app.get('/')
 async def root():
@@ -20,7 +24,7 @@ async def websocket_endpoint(websocket: WebSocket):
             data = await websocket.receive_json()
             print("............. DATA ..............")
             print(data)
-            inputs = {"question": data["question"], "websocket": websocket, "attempts": 0, "manager": manager}
+            inputs = {"question": data["question"], "websocket": websocket, "attempts": 0, "manager": manager, "MAX_ATTEMPTS": GraphState.MAX_ATTEMPTS}
             async for event in agent.astream(inputs):
                 for key, value in event.items():
                     pprint(f"Finished running: {key}:")

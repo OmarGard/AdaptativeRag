@@ -1,0 +1,3 @@
+openai_chroma_db/
+secrets.json
+__pycache__/

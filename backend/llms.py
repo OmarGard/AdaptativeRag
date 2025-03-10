@@ -2,7 +2,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain import hub
-from backend.models import GradeAnswer, GradeDocuments, GradeHallucinations, RouteQuery
+from models import GradeAnswer, GradeDocuments, GradeHallucinations, RouteQuery
 
 # LLM with function call
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)

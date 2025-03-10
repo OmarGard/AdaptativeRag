@@ -3,7 +3,7 @@ from typing import Literal, List
 from typing_extensions import TypedDict
 from fastapi import WebSocket
 
-from backend.websocket_manager import WebSocketManager
+from websocket_manager import WebSocketManager
 
 class RouteQuery(BaseModel):
     """Route a user query to the most relevant datasource."""
