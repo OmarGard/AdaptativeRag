@@ -16,14 +16,14 @@ from embedding import retriever
 
 # Define GRAPH_STAGES
 GRAPH_STAGES = {
-    "web_search": "Web Search Stage",
-    "retrieve": "Retrieve Stage",
-    "grade_documents": "Grade Documents Stage",
-    "generate": "Generate Stage",
-    "transform_query": "Transform Query Stage",
-    "route_question": "Route Question Stage",
-    "grade_generation_v_documents_and_question": "Verify Hallucination Stage",
-    "decide_to_generate": "Decide to Generate or Transform Query Stage",
+    "web_search": "web_search",
+    "retrieve": "retrieve",
+    "grade_documents": "grade_documents",
+    "generate": "generate",
+    "transform_query": "transform_query",
+    "route_question": "route_question",
+    "grade_generation_v_documents_and_question": "grade_generation_v_documents_and_question",
+    "decide_to_generate": "decide_to_generate",
 }
 
 # Web Search Tool
