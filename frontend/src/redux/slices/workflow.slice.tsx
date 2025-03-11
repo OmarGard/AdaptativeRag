@@ -1,56 +1,79 @@
 // workflowSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 interface WorkflowStage {
+  key: string;
   label: string;
 }
 interface WorkflowStages {
-  web_search: WorkflowStage | null;
-  retrieve: WorkflowStage | null;
-  grade_documents: WorkflowStage | null;
-  generate: WorkflowStage | null;
-  transform_query: WorkflowStage | null;
-  route_question: WorkflowStage | null;
-  grade_generation_v_documents_and_question: WorkflowStage | null;
-  decide_to_generate: WorkflowStage | null;
+  start: WorkflowStage;
+  web_search: WorkflowStage ;
+  retrieve: WorkflowStage;
+  grade_documents: WorkflowStage;
+  generate: WorkflowStage;
+  transform_query: WorkflowStage;
+  route_question: WorkflowStage;
+  grade_generation_v_documents_and_question: WorkflowStage;
+  decide_to_generate: WorkflowStage;
+  end: WorkflowStage;
 }
 
 const workflowStages: WorkflowStages = {
+  start: {
+    label: "START",
+    key: "start"
+  },
   web_search: {
-    label: "Web Search Stage"
+    label: "Web Search Stage",
+    key: "web_search"
   },
   retrieve: {
-    label: "Retrieve Stage"
+    label: "Retrieve Stage",
+    key: "retrieve"
   },
   grade_documents: {
-    label: "Grade Documents Stage"
+    label: "Grade Documents Stage",
+    key: "grade_documents"
   },
   generate: {
-    label: "Generation Stage"
+    label: "Generation Stage",
+    key: "generate"
   },
   transform_query: {
-    label: "Transform Query Stage"
+    label: "Transform Query Stage",
+    key: "transform_query"
   },
   route_question: {
-    label: "Route Question Stage"
+    label: "Route Question Stage",
+    key: "route_question"
   },
   grade_generation_v_documents_and_question: {
-    label: "Verify Hallucinations Stage"
+    label: "Verify Hallucinations Stage",
+    key: "grade_generation_v_documents_and_question"
   },
   decide_to_generate: {
-    label: "Decide to Generate or Transform Query Stage"
+    label: "Decide to Generate or Transform Query Stage",
+    key: "decide_to_generate"
+  },
+  end: {
+    label: "END",
+    key: "end"
   }
 };
 
-const workflowSlice = createSlice({
-  name: 'workflow',
-  initialState: {
-    currentStage: null,        // one of the stage keys or null when idle
+const resetInitialState = () => {
+  return {
+    currentStage: workflowStages.start?.key,        // one of the stage keys or null when idle
     stages: Object.keys(workflowStages).reduce((acc: { [key: string]: { name: string, status: string } }, key) => {
         acc[key] = { name: key, status: 'pending' };
         return acc;
     }, {})
     // 'status' could be 'pending', 'active', or 'completed'
-  },
+  }
+};
+
+const workflowSlice = createSlice({
+  name: 'workflow',
+  initialState: resetInitialState(),
   reducers: {
     updateWorkflowStage: (state, action) => {
       const newStage = action.payload;
@@ -60,18 +83,14 @@ const workflowSlice = createSlice({
       state.currentStage = newStage;
       state.stages[newStage].status = 'active';
       state.currentStage = newStage;
-      // Update statuses: mark all stages up to newStage as completed, and newStage as active
       
     },
     resetWorkflow: (state) => {
-      state.currentStage = null;
-      state.stages = Object.keys(workflowStages).reduce((acc: { [key: string]: { name: string, status: string } }, key) => {
-        acc[key] = { name: key, status: 'pending' };
-        return acc;
-    }, {})
+      state = resetInitialState();
     }
   }
 });
 
 export const { updateWorkflowStage, resetWorkflow } = workflowSlice.actions;
+export { workflowStages }
 export default workflowSlice.reducer;

@@ -7,6 +7,7 @@ import ReactFlow from 'reactflow';  // assuming reactflow is installed and CSS i
 import { addUserMessage, addAssistantMessage } from '../redux/slices/chat.slice';  // action creators from Redux slices
 import { Message } from '../redux/slices/chat.slice';  // action creators from Redux slices
 import { updateWorkflowStage } from '../redux/slices/workflow.slice';
+import WorkflowDiagram from './WorkflowDiagram/workflow.component';  // custom component
 
 const ChatInterface = () => {
   const dispatch = useDispatch();
@@ -71,7 +72,7 @@ const ChatInterface = () => {
 
       {/* React Flow diagram for workflow (could also be placed elsewhere in layout) */}
       <div style={{ height: 150, marginBottom: 8, background: '#212121', borderRadius: 8 }}>
-        <WorkflowDiagram currentStage={currentStage} />
+        <WorkflowDiagram/>
       </div>
 
       {/* Input Field and Send Button */}
