@@ -3,7 +3,7 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import theme from './themes/theme';
 import { Provider } from 'react-redux';
 import { store } from './redux/store/index.store';
-import ChatInterface from './components/ChatInterface.component';
+import ChatInterface from './components/Chat/ChatInterface.component';
 
 function App() {
   return (

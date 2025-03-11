@@ -1,11 +1,8 @@
 // WorkflowDiagram.jsx
-import React from 'react';
-import { useEffect, useRef, useState } from 'react';
 import ReactFlow, { Background, Controls } from 'reactflow';
 import 'reactflow/dist/style.css';  // make sure to import the default CSS
 import { useSelector } from 'react-redux';
 import { baseNodes, baseEdges} from './workflow.graph';
-import { workflowStages } from '../../redux/slices/workflow.slice';
 
 const WorkflowDiagram = () => {
   // Alternatively, get currentStage from Redux inside this component:

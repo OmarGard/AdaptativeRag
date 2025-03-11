@@ -1,18 +1,16 @@
 // ChatInterface.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TextField, IconButton, List, ListItem, ListItemAvatar, Avatar, ListItemText, Paper } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import ReactFlow from 'reactflow';  // assuming reactflow is installed and CSS imported
-import { addUserMessage, addAssistantMessage } from '../redux/slices/chat.slice';  // action creators from Redux slices
-import { Message } from '../redux/slices/chat.slice';  // action creators from Redux slices
-import { updateWorkflowStage } from '../redux/slices/workflow.slice';
-import WorkflowDiagram from './WorkflowDiagram/workflow.component';  // custom component
+import { addUserMessage, addAssistantMessage } from '../../redux/slices/chat.slice';  // action creators from Redux slices
+import { Message } from '../../redux/slices/chat.slice';  // action creators from Redux slices
+import { updateWorkflowStage } from '../../redux/slices/workflow.slice';
+import WorkflowDiagram from '../WorkflowDiagram/workflow.component';  // custom component
 
 const ChatInterface = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state: any) => state.chat.messages);
-  const currentStage = useSelector((state: any) => state.workflow.currentStage);
   const [input, setInput] = useState('');
   const ws = useRef<WebSocket | null>(null);
 
