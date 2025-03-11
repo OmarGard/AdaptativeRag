@@ -11,6 +11,6 @@ python3 -m pip install -U langchain
 python3 -m pip install "fastapi[standard]"
 
 // Requirements Cloud Adaptative RAG
-python3 -m pip install "fastapi[standard]"
+python3 -m pip install "uvicorn[standard]" # Command to run: uvicorn main:app --reload
 python3 -m pip install -U langchain_community tiktoken langchain-openai langchain-cohere langchainhub langchain-chroma langchain langgraph pydantic typing-extensions langchain-google-community langchain-core  
 python3 -m pip install beautifulsoup4
