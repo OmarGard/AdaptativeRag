@@ -30,7 +30,7 @@ export const websocketMiddleware = (store: any) => {
           break;
   
         case "websocket/disconnect":
-          if (socket) {
+          if (socket && socket.readyState === WebSocket.OPEN) {
             socket.close();
             socket = null;
             store.dispatch({ type: "websocket/setConnected", payload: false });

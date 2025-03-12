@@ -11,6 +11,5 @@ export const store = configureStore({
     websocket: websocketReducer
     // ...other slices if any
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(websocketMiddleware),
-
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(websocketMiddleware)
 });

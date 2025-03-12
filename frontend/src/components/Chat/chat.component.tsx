@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { TextField, List, ListItem, ListItemAvatar, Avatar, ListItemText, IconButton } from '@mui/material';
 import { Message } from '../../redux/slices/chat.slice';  // action creators from Redux slices
 import SendIcon from '@mui/icons-material/Send';
-
+import Paper from '@mui/material/Paper';
+import './chat.styles.css';
 
 interface ChatProps {
     parentSendQuestion: (question: string) => void;
@@ -18,7 +19,7 @@ const Chat = (props: ChatProps) => {
     };
 
     return (
-        <div>
+        <Paper className="chat-paper" elevation={3}>
             <List sx={{ flexGrow: 1, overflowY: 'auto', mb: 1 }}>
             {
                 messages.map((msg: Message, idx: number) => (
@@ -49,11 +50,11 @@ const Chat = (props: ChatProps) => {
                     onChange={(e) => setInput(e.target.value)} 
                     onKeyDown={(e) => { if(e.key === 'Enter') sendQuestion(); }} 
                 />
-                <IconButton color="primary" onClick={sendQuestion} sx={{ ml: 1 }}>
+                <IconButton color="secondary" onClick={sendQuestion} sx={{ ml: 1 }}>
                     <SendIcon />
                 </IconButton>
             </div>
-        </div>
+        </Paper>
 
         
     );

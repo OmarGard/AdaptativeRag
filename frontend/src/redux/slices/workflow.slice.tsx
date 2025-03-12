@@ -62,7 +62,7 @@ const workflowStages: WorkflowStages = {
 
 const resetInitialState = () => {
   return {
-    currentStage: workflowStages.start?.key,        // one of the stage keys or null when idle
+    currentStage: workflowStages.start.key,        // one of the stage keys or null when idle
     stages: Object.keys(workflowStages).reduce((acc: { [key: string]: { name: string, status: string } }, key) => {
         acc[key] = { name: key, status: 'pending' };
         return acc;
@@ -80,13 +80,14 @@ const workflowSlice = createSlice({
       if(state.currentStage){
           state.stages[state.currentStage].status = 'completed';
       } 
-      state.currentStage = newStage;
-      state.stages[newStage].status = 'active';
-      state.currentStage = newStage;
-      
+      if(state.stages[newStage]){
+        state.currentStage = newStage;
+        state.stages[newStage].status = 'active';
+        state.currentStage = newStage;
+      }
     },
     resetWorkflow: (state) => {
-      state = resetInitialState();
+      return resetInitialState();
     }
   }
 });
