@@ -48,7 +48,7 @@ async def retrieve(state):
     print("---RETRIEVE---")
     websocket = state["websocket"]
     manager = state["manager"]
-    await manager.send_message(websocket, GRAPH_STAGES["web_search"], "update_status")
+    await manager.send_message(websocket, GRAPH_STAGES["retrieve"], "update_status")
     question = state["question"]
     documents = await retriever.ainvoke(question)
     return {"documents": documents, "question": question}
